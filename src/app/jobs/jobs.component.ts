@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JobsService } from '../jobs.service';
+import { job } from '../job.model';
 
 @Component({
   selector: 'app-jobs',
@@ -8,7 +9,7 @@ import { JobsService } from '../jobs.service';
 })
 export class JobsComponent implements OnInit {
   jobIds!: number[];
-  jobs: any[] = [];
+  jobs: job[] = [];
   showLoadMore = true;
 
   constructor(private jobService: JobsService) {}
@@ -37,7 +38,7 @@ export class JobsComponent implements OnInit {
     this.jobs = [];
     const jobsToFetch = this.jobIds.slice(0, this.jobService.pageSize);
     jobsToFetch.forEach((id) => {
-      this.jobService.getJobDetails(id).subscribe((job) => {
+      this.jobService.getJobDetails(id).subscribe((job: job) => {
         this.jobs.push(job);
       });
       console.warn(this.jobs);

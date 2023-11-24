@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { job } from './job.model';
 
 @Injectable({
   providedIn: 'root',
@@ -22,8 +23,8 @@ export class JobsService {
     return this.getJobs();
   }
 
-  getJobDetails(id: number): Observable<any> {
+  getJobDetails(id: number): Observable<job> {
     const url = `${this.apiUrl}/${id}.json`;
-    return this.http.get<any>(url);
+    return this.http.get<job>(url);
   }
 }
